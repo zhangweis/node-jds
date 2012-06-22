@@ -358,7 +358,9 @@ public:
     EC_KEY *old = key->ec;
 
     key->ec = EC_KEY_new_by_curve_name(NID_secp256k1);
-    EC_KEY_regenerate_key(key->ec, EC_KEY_get0_private_key(old));
+    if (EC_KEY_regenerate_key(key->ec, EC_KEY_get0_private_key(old)) == 1) {
+      key->hasPublic = true;
+    }
 
     EC_KEY_free(old);
 

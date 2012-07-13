@@ -126,7 +126,7 @@ private:
     return ECDSA_verify(0, digest, digest_len, sig, sig_len, ec);
   }
 
-  EIO_CALLBACK(EIO_VerifySignature)
+  static void EIO_VerifySignature(uv_work_t *req)
   {
     verify_sig_baton_t *b = static_cast<verify_sig_baton_t *>(req->data);
 
@@ -470,18 +470,20 @@ public:
 
     key->Ref();
 
-    eio_custom(EIO_VerifySignature, EIO_PRI_DEFAULT, VerifySignatureCallback, baton);
-    ev_ref(EV_DEFAULT_UC);
+    uv_work_t *req = new uv_work_t;
+    req->data = baton;
+
+    uv_queue_work(uv_default_loop(), req, EIO_VerifySignature, VerifySignatureCallback);
 
     return scope.Close(Undefined());
   }
 
-  static int
-  VerifySignatureCallback(eio_req *req)
+  static void
+  VerifySignatureCallback(uv_work_t *req)
   {
     HandleScope scope;
     verify_sig_baton_t *baton = static_cast<verify_sig_baton_t *>(req->data);
-    ev_unref(EV_DEFAULT_UC);
+
     baton->key->Unref();
     baton->digestBuf.Dispose();
     baton->sigBuf.Dispose();
@@ -507,14 +509,15 @@ public:
 
     baton->cb->Call(Context::GetCurrent()->Global(), 2, argv);
 
-    if (try_catch.HasCaught()) {
-      FatalException(try_catch);
-    }
 
     baton->cb.Dispose();
 
     delete baton;
-    return 0;
+    delete req;
+
+    if (try_catch.HasCaught()) {
+      FatalException(try_catch);
+    }
   }
 
   static Handle<Value>

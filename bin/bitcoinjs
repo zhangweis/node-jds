@@ -235,12 +235,14 @@ case "test":
       }
       var testDir = path.resolve(__dirname, "../test/");
       var testCases = fs.readdirSync(testDir);
-      testCases = testCases.map(function (p) {
-        if (p.substr(-3) !== '.js') return '';
+      args = testCases.map(function (p) {
+        if (p.substr(-3) !== '.js') return false;
         return testDir + "/" + p;
       });
-      args.unshift('--spec');
-      sh(vowsBin, testCases.concat(args));
+      args = args.filter(function (v) {
+        return v !== false;
+      });
+      sh(vowsBin, args);
     }
   );
   break;

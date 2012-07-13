@@ -5,15 +5,14 @@ var fs = require('fs');
 
 var buffertools = require('buffertools');
 
-var logger = require("../lib/logger");
 var bitcoin = require("../lib/bitcoin");
-
+var logger = bitcoin.logger;
 var Script = bitcoin.Script;
 var Connection = bitcoin.Connection;
-var ScriptInterpreter = require("../lib/scriptinterpreter").ScriptInterpreter;
+var ScriptInterpreter = bitcoin.ScriptInterpreter;
 var Opcode = require("../lib/opcode").Opcode;
-var Util = require("../lib/util");
-var Transaction = require('../lib/schema/transaction').Transaction;
+var Util = bitcoin.Util;
+var Transaction = bitcoin.schema.Transaction;
 var BitcoinKey = Util.BitcoinKey;
 
 logger.logger.levels.scrdbg = 1;

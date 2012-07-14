@@ -94,6 +94,10 @@ var getConfig = exports.getConfig = function getConfig(initConfig) {
     noverify: {
       type: yanop.flag,
       description: 'Disable all tx/block verification'
+    },
+    noverifyscripts: {
+      type: yanop.flag,
+      description: 'Disable tx scripts verification'
     }
   });
 
@@ -232,6 +236,9 @@ var getConfig = exports.getConfig = function getConfig(initConfig) {
   }
   if (opts.noverify) {
     cfg.verify = false;
+  }
+  if (opts.noverifyscripts) {
+    cfg.verifyScripts = false;
   }
 
   return cfg;

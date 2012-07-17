@@ -33,7 +33,7 @@ running `bitcoinjs help`.
 
 * [OpenSSL](http://www.openssl.org/) (lib and headers)
 * [pkg-config](http://www.freedesktop.org/wiki/Software/pkg-config)
-* [Node.js](https://github.com/joyent/node) 0.6.5+
+* [Node.js](https://github.com/joyent/node) 0.8.2+
 
 Node.js should be compiled manually based on the latest stable
 release.

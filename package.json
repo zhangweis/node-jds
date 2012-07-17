@@ -17,6 +17,10 @@
     "install": "node-waf configure build"
   },
 
+  "engines": {
+    "node" : ">=0.8.2"
+  },
+
   "man": [
     "./man/bitcoinjs.1",
     "./man/run.1",

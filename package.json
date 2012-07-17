@@ -61,6 +61,6 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/bitcoinjs/node-bitcoin-p2p.git"
+    "url": "git://github.com/bitcoinjs/bitcoinjs-server.git"
   }
 }

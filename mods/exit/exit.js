@@ -60,10 +60,8 @@ exports.init = function init(node) {
   });
   blockModule.attach(app, '/block/');
 
-  app.listen(3125);
+  var server = app.listen(3125);
 
-  var io = require('socket.io').listen(app, {
-    logger: logger
-  });
+  var io = require('socket.io').listen(server);
   var realtimeApi = new RealtimeAPI(io, node, pubkeysModule, txModule, blockModule);
 };

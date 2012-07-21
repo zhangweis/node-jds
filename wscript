@@ -41,6 +41,6 @@ def build_post(bld):
 def build(bld):
   obj = bld.new_task_gen('cxx', 'shlib', 'node_addon')
   obj.target = 'native'
-  obj.source = 'native.cc'
+  obj.source = 'src/main.cc src/eckey.cc'
   bld.add_post_fun(build_post)
 

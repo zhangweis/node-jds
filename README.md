@@ -1,5 +1,7 @@
 # BitcoinJS Server
 
+[![Build Status](https://secure.travis-ci.org/bitcoinjs/bitcoinjs-server.png?branch=master)](http://travis-ci.org/bitcoinjs/bitcoinjs-server)
+
 This is an implementation of a Bitcoin node in Node.js. It is intended
 as a powerful alternative to the standard bitcoind that ships with the
 original client.

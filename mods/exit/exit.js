@@ -49,6 +49,7 @@ exports.init = function init(node) {
     node: node
   });
   pubkeysModule.attach(app, '/pubkeys/');
+  pubkeysModule.attach(app, '/address/');
 
   var txModule = new Tx({
     node: node

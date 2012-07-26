@@ -1,6 +1,9 @@
 var util = require('util');
 var path = require('path');
 var yanop = require('yanop');
+var fs = require('fs');
+var colors = require('colors');
+var mkdirp = require('mkdirp');
 
 // Load bitcoinjs-server
 var Bitcoin = require('../lib/bitcoin');
@@ -133,18 +136,40 @@ var getConfig = exports.getConfig = function getConfig(initConfig) {
   } catch (e) {
     if (configPath.substr(-3) !== '.js') configPath += '.js';
 
-    logger.error('No configuration file found!');
-    util.puts(
-      "\n" +
-        "BitcoinJS was unable to locate your config file at:\n" +
-        "" + path.resolve(__dirname, configPath) + "\n" +
+    var exampleConfigPath = path.resolve(__dirname, './settings.example.js');
+    var targetConfigPath = path.resolve(__dirname, configPath);
+
+    try {
+      // Create config/home directory
+      mkdirp.sync(path.dirname(configPath));
+
+      // Copy example config file
+      fs.writeFileSync(targetConfigPath, fs.readFileSync(exampleConfigPath));
+
+      // Test config file
+      require.resolve(configPath);
+
+      logger.info('Automatically created config file');
+      util.puts(
         "\n" +
-        "Please create a config file in this location or provide the correct path\n" +
-        "to your config using the --config=/path/to/settings.js option.\n" +
+          "| BitcoinJS created a new default config file at:\n" +
+          "| " + targetConfigPath + "\n" +
+          "| \n" +
+          "| Please edit it to suit your requirements, for example to enable JSON-RPC.\n".bold);
+    } catch (e) {
+      logger.error('Unable to automatically create config file!');
+      util.puts(
         "\n" +
-        "To get started you can copy the example config file from here:\n" +
-        "" + path.resolve(__dirname, './settings.example.js') + "\n");
-    process.exit(1);
+          "| BitcoinJS was unable to locate or create a config file at:\n" +
+          "| " + targetConfigPath + "\n" +
+          "| \n" +
+          "| Please create a config file in this location or provide the correct path\n" +
+          "| to your config using the --config=/path/to/settings.js option.\n" +
+          "| \n" +
+          "| To get started you can copy the example config file from here:\n" +
+          "| " + exampleConfigPath + "\n");
+      process.exit(1);
+    }
   }
 
   var cfg;

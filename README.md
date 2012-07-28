@@ -185,7 +185,7 @@ yet.
 Go to the `bitcoinjs` folder and run:
 
 ``` sh
-node-waf configure build
+npm run-script install
 ```
 
 # License

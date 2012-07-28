@@ -253,7 +253,7 @@ BitcoinKey::GetPublic(Local<String> property, const AccessorInfo& info)
   unsigned char *pub_begin, *pub_end;
   pub_begin = pub_end = (unsigned char *)malloc(pub_size);
 
-  if (i2o_ECPublicKey(key->ec, &pub_end) != pub_size) {
+  if (i2o_ECPublicKey(key->ec, &pub_end) != (int) pub_size) {
     // TODO: ERROR: "Error from i2o_ECPublicKey(key->ec, &pub)"
     return scope.Close(Null());
   }
@@ -321,7 +321,7 @@ BitcoinKey::ToDER(const Arguments& args)
   unsigned char *der_begin, *der_end;
   der_begin = der_end = (unsigned char *)malloc(der_size);
 
-  if (i2d_ECPrivateKey(key->ec, &der_end) != der_size) {
+  if (i2d_ECPrivateKey(key->ec, &der_end) != (int) der_size) {
     // TODO: ERROR: "Error from i2d_ECPrivateKey(key->ec, &der_end)"
     return scope.Close(Null());
   }
@@ -543,7 +543,7 @@ BitcoinKey::SignSync(const Arguments& args)
   unsigned char *der_begin, *der_end;
   der_begin = der_end = (unsigned char *)malloc(der_size);
 
-  if (i2d_ECDSA_SIG(sig, &der_end) != der_size) {
+  if (i2d_ECDSA_SIG(sig, &der_end) != (int) der_size) {
     // TODO: ERROR: "Error from i2d_ECPrivateKey(key->ec, &der_end)"
     return scope.Close(Null());
   }

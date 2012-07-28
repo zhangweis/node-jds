@@ -31,6 +31,7 @@
   ],
 
   "dependencies": {
+    "async": ">=0.1.22",
     "buffertools": ">=1.0.3",
     "binary": ">=0.2.5 <0.3",
     "bignum": ">=0.4.0",

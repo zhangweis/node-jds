@@ -47,7 +47,7 @@
     "lru-cache": ">=1.0.4",
     "pkginfo": ">=0.2.0",
     "buffers": ">=0.1.1",
-    "leveldb": ">=0.5.5",
+    "leveldb": "=0.7.0",
     "mkdirp": ">=0.2.1"
   },
 

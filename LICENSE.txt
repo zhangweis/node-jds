@@ -1,10 +1,10 @@
-Copyright (c) 2011 Stefan Thomas <justmoon@members.fsf.org>
+Copyright (c) 2011-2012 Stefan Thomas <justmoon@members.fsf.org>
 
-Native extensions are
-Copyright (c) 2011 Andrew Schaaf <andrew@andrewschaaf.com>
+pubkey_to_address256 and base58_en/decode in C++ are
+Copyright (c) 2011-2012 Andrew Schaaf <andrew@andrewschaaf.com>
 
 Parts of this software are based on BitcoinJ
-Copyright (c) 2011 Google Inc.
+Copyright (c) 2011-2012 Google Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

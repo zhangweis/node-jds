@@ -19,6 +19,7 @@
 
 #include "common.h"
 #include "eckey.h"
+#include "leveldb.h"
 
 using namespace std;
 using namespace v8;
@@ -297,6 +298,7 @@ init (Handle<Object> target)
 {
   HandleScope scope;
   BitcoinKey::Init(target);
+  LevelDB::Init(target);
   target->Set(String::New("pubkey_to_address256"), FunctionTemplate::New(pubkey_to_address256)->GetFunction());
   target->Set(String::New("base58_encode"), FunctionTemplate::New(base58_encode)->GetFunction());
   target->Set(String::New("base58_decode"), FunctionTemplate::New(base58_decode)->GetFunction());

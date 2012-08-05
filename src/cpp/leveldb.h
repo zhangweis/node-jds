@@ -1,8 +1,8 @@
 #ifndef BITCOINJS_SERVER_INCLUDE_LEVELDB_H_
 #define BITCOINJS_SERVER_INCLUDE_LEVELDB_H_
 
-#include "../node_modules/leveldb/src/cpp/handle.h"
-#include "../node_modules/leveldb/src/cpp/batch.h"
+#include "../../node_modules/leveldb/src/cpp/handle.h"
+#include "../../node_modules/leveldb/src/cpp/batch.h"
 
 class LevelDB : public ObjectWrap {
  public:

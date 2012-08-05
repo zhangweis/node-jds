@@ -3,19 +3,19 @@
     {
       "target_name": "bitcoinjs",
       "sources": [
-        "src/main.cc",
-        "src/common.h",
-        "src/eckey.cc",
-        "src/eckey.h",
-        "src/leveldb.cc",
-        "src/leveldb.h",
-        "src/util/crypt.cc",
-        "src/util/crypt.h",
-        "src/util/hex.cc",
-        "src/util/hex.h",
-        "src/util/inttypes.h",
-        "src/util/parser.cc",
-        "src/util/parser.h"
+        "src/cpp/main.cc",
+        "src/cpp/common.h",
+        "src/cpp/eckey.cc",
+        "src/cpp/eckey.h",
+        "src/cpp/leveldb.cc",
+        "src/cpp/leveldb.h",
+        "src/cpp/util/crypt.cc",
+        "src/cpp/util/crypt.h",
+        "src/cpp/util/hex.cc",
+        "src/cpp/util/hex.h",
+        "src/cpp/util/inttypes.h",
+        "src/cpp/util/parser.cc",
+        "src/cpp/util/parser.h"
       ],
       "link_settings": {
         "libraries": [

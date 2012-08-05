@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <cstdlib>
 
-#include "../node_modules/leveldb/src/cpp/helpers.h"
+#include "../../node_modules/leveldb/src/cpp/helpers.h"
 #include "util/crypt.h"
 #include "util/hex.h"
 #include "util/inttypes.h"

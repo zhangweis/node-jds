@@ -48,13 +48,12 @@ cfg.jsonrpc.port = 8432;
 // work, we'll try connecting to the P2P network directly.
 //
 // Valid values:
-//   "localhost:8333"     - Connect to a single node
-//   ["server:8333", ...] - Connect to multiple nodes
+//   "localhost:8333"     - Connect to a single specified node
+//   ["server:8333", ...] - Connect to multiple specified nodes
 //   "auto"               - Connect to localhost:8333 if available and
 //                          disable bootstrapping and other known nodes.
-//   "p2p"
-//   - or -
-//   null                 - Use bootstrapping
+//   "none"               - Don't connect at all
+//   "p2p" or null        - Use bootstrapping
 cfg.network.connect = "auto";
 
 // Default port

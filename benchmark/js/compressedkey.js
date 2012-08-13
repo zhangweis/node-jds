@@ -2,9 +2,9 @@ require('buffertools');
 
 var suite = require('./common');
 
-var Util = require('../lib/util');
+var Util = require('../../lib/util');
 
-var Key = require('../native.node').BitcoinKey;
+var Key = require('../../lib/binding').BitcoinKey;
 
 var key = new Key();
 

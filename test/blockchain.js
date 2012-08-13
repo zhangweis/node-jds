@@ -24,18 +24,6 @@ if (leveldbAvailable) {
   testEngine("LevelDB", 'leveldb:///tmp/unittest_blockchain');
 }
 
-var mongodbAvailable = false;
-try {
-  var mongo = require('mongodb');
-  if (mongo.Db) {
-    mongodbAvailable = true;
-  }
-} catch (e) {}
-
-if (mongodbAvailable) {
-  testEngine("MongoDB", 'mongodb://localhost/bitcointest_blockchain');
-}
-
 function testEngine(label, uri) {
   var storage;
   vows.describe(label + ' Block Chain').addBatch({

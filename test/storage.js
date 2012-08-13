@@ -58,19 +58,6 @@ if (leveldbAvailable) {
   testEngine("LevelDB", 'leveldb:///tmp/unittest_storage');
 }
 
-var mongodbAvailable = false;
-try {
-  var mongo = require('mongodb');
-  if (mongo.Db) {
-    mongodbAvailable = true;
-  }
-} catch (e) {}
-
-if (mongodbAvailable) {
-  testEngine("MongoDB", 'mongodb://localhost/bitcointest_storage');
-}
-
-
 function testEngine(label, uri) {
   vows.describe(label+' Storage').addBatch({
     'A database': {

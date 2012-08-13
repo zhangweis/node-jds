@@ -19,11 +19,15 @@
 
 #include "common.h"
 #include "eckey.h"
-#include "leveldb.h"
+#include "database.h"
+#include "coinsdb.h"
+#include "util/exception.h"
 
 using namespace std;
 using namespace v8;
 using namespace node;
+
+namespace bitcoinjs {
 
 static Handle<Value>
 pubkey_to_address256 (const Arguments& args)
@@ -112,7 +116,7 @@ base58_encode (const Arguments& args)
   BIGNUM *rem = BN_new();
   
   // TODO: compute safe length
-  char *str = new char[100];
+  char str[100];
   unsigned int c;
   int i, j, j2;
   
@@ -159,7 +163,6 @@ base58_encode (const Arguments& args)
   BN_CTX_free(ctx);
   
   Local<String> ret = String::New(str);
-  delete [] str;
   return scope.Close(ret);
 }
 
@@ -292,15 +295,21 @@ sha256_midstate (const Arguments& args)
   return scope.Close(midstate_buf->handle_);
 }
 
+extern "C" {
 
-extern "C" void
-init (Handle<Object> target)
+static void init(Handle<Object> target)
 {
-  HandleScope scope;
   BitcoinKey::Init(target);
-  LevelDB::Init(target);
+  Database::Init(target);
+  CoinsDB::Init(target);
   target->Set(String::New("pubkey_to_address256"), FunctionTemplate::New(pubkey_to_address256)->GetFunction());
   target->Set(String::New("base58_encode"), FunctionTemplate::New(base58_encode)->GetFunction());
   target->Set(String::New("base58_decode"), FunctionTemplate::New(base58_decode)->GetFunction());
   target->Set(String::New("sha256_midstate"), FunctionTemplate::New(sha256_midstate)->GetFunction());
 }
+
+NODE_MODULE(bitcoinjs, init);
+
+}
+
+} // bitcoinjs

@@ -8,10 +8,13 @@
 
 #include "common.h"
 #include "eckey.h"
+#include "util/exception.h"
 
 using namespace std;
 using namespace v8;
 using namespace node;
+
+namespace bitcoinjs {
 
 int static inline EC_KEY_regenerate_key(EC_KEY *eckey, const BIGNUM *priv_key)
 {
@@ -557,3 +560,5 @@ BitcoinKey::SignSync(const Arguments& args)
 }
 
 Persistent<FunctionTemplate> BitcoinKey::s_ct;
+
+} // bitcoinjs

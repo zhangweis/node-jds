@@ -195,11 +195,19 @@ license.
 
 # Credits
 
-BitcoinJS Server - Node.js Bitcoin client<br>
+BitcoinJS Server - Node.js Bitcoin implementation<br>
 Copyright (c) 2011-2012 Stefan Thomas <justmoon@members.fsf.org>.
 
-Some native extensions are<br>
+pubkey_to_address256 and base58_en/decode in C++ are<br>
 Copyright (c) 2011-2012 Andrew Schaaf <andrew@andrewschaaf.com>
 
 Parts of this software are based on [BitcoinJ](http://code.google.com/p/bitcoinj/)<br>
 Copyright (c) 2011-2012 Google Inc.
+
+MurmurHash3 - Efficient hashing function by Austin Appleby<br>
+Public Domain<br>
+Licensed under MIT License
+
+Sparsehash - An extremely memory-efficient hash_map implementation<br>
+Copyright (c) 2005, Google Inc.<br>
+Licensed under New BSD License

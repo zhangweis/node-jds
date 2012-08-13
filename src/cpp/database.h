@@ -1,24 +1,32 @@
 #ifndef BITCOINJS_SERVER_INCLUDE_LEVELDB_H_
 #define BITCOINJS_SERVER_INCLUDE_LEVELDB_H_
 
-#include "../../node_modules/leveldb/src/cpp/handle.h"
-#include "../../node_modules/leveldb/src/cpp/batch.h"
+#include "coinsdb.h"
 
-class LevelDB : public ObjectWrap {
+#include "leveldb/db.h"
+
+namespace bitcoinjs {
+
+class Database : public ObjectWrap {
  public:
   static Persistent<FunctionTemplate> constructor;
   static void Init(Handle<Object> target);
 
  private:
-  LevelDB(leveldb::DB* db);
+  Database(leveldb::DB* db);
+  ~Database();
 
   static Handle<Value> New(const Arguments& args);
   static Handle<Value> GetHandleExternal(const Arguments& args);
+  static Handle<Value> GetOutputsByInputs(const Arguments& args);
 
   class OpAsync;
   class AddBlockAsync;
 
   leveldb::DB* db_;
+  CoinsDB* coinsdb_;
 };
+
+} // bitcoinjs
 
 #endif

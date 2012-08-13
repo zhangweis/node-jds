@@ -1,6 +1,8 @@
 #include "crypt.h"
 #include "openssl/sha.h"
 
+namespace bitcoinjs {
+
 void Crypt::HashDoubleSha256(const char *data, size_t len, uint256_t *hash)
 {
   SHA256_CTX ctx;
@@ -12,3 +14,5 @@ void Crypt::HashDoubleSha256(const char *data, size_t len, uint256_t *hash)
   SHA256_Update(&ctx, (unsigned char*)hash, SHA256_DIGEST_LENGTH);
   SHA256_Final((unsigned char*)hash, &ctx);
 }
+
+} // bitcoinjs

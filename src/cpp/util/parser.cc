@@ -2,29 +2,42 @@
 
 #include <cstdio>
 
-void Parser::Seek(int offset)
-{
-  // TODO: Check bounds
-  pos += offset;
-}
+namespace bitcoinjs {
 
-uint64_t Parser::VarInt()
+template<typename T>
+uint64_t Parser<T>::VarInt()
 {
   uint64_t result = 0;
-  if (data[pos] < 0xFD) {
-    result = data[pos++];
-  } else if (data[pos] == 0xFD) {
-    result = * (uint16_t*) (data+pos+1);
-    pos += 3;
-  } else if (data[pos] == 0xFE) {
-    result = * (uint32_t*) (data+pos+1);
-    pos += 5;
+  uint8_t ch = Uint8();
+  if (ch < 0xFD) {
+    result = ch;
+  } else if (ch == 0xFD) {
+    result = Uint16();
+  } else if (ch == 0xFE) {
+    result = Uint32();
   } else { // must be 0xFF
-    result = * (uint64_t*) (data+pos+1);
-    pos += 9;
+    result = Uint64();
   }
   if (result > VARINT_MAX) {
-    // TODO: Error
+    throw ParserError("Parser::VarInt(): VARINT_MAX exceeded");
   }
   return result;
 }
+
+template<typename T>
+Slice Parser<T>::VarStrSlice()
+{
+  uint64_t len = VarInt();
+  Slice s(Data(len), len);
+
+  return s;
+}
+
+template<typename T>
+std::string& Parser<T>::VarStr()
+{
+  uint64_t len = VarInt();
+  return s(Data(len), len);
+}
+
+} // bitcoinjs

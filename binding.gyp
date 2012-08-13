@@ -31,6 +31,14 @@
           "-Wl,-rpath='$$ORIGIN/../../node_modules/leveldb/build/Release/'"
         ]
       }
+    },
+    {
+      "target_name": "benchmark",
+      "type": "none",
+      "dependencies": [
+        "bitcoinjs",
+        "benchmark/cpp/benchmark.gyp:*"
+      ]
     }
   ]
 }

@@ -209,5 +209,10 @@ Public Domain<br>
 Licensed under MIT License
 
 Sparsehash - An extremely memory-efficient hash_map implementation<br>
-Copyright (c) 2005, Google Inc.<br>
+Copyright (c) 2005 Google Inc.<br>
 Licensed under New BSD License
+
+Hayai - Simple C++ benchmarking framework<br>
+Copyright (c) 2011 Nick Bruun<br>
+Licensed under permissive open-source license, see:<br>
+benchmark/cpp/deps/hayai/LICENSE.md

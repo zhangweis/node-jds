@@ -77,7 +77,7 @@ cfg.network.noListen = false;
 //
 // This setting is used to select and configure a database backend.
 //
-// LevelDB (default) (recommended):
+// LevelDB (default):
 //   LevelDB is a very fast built-in database that BitcoinJS ships with. You
 //   don't need to install anything else. LevelDB does not give you a way to
 //   access the data directly from another application. Instead BitcoinJS
@@ -88,17 +88,6 @@ cfg.network.noListen = false;
 //
 //   Example: 'leveldb:///your/folder/here/'
 //
-// MongoDB
-//   MongoDB is a JavaScript/JSON based object storage that supports advanced
-//   features. To use this you must install a MongoDB server and then specify
-//   the correct URI here.
-//
-//   For more information on the format for MongoDB URIs, see:
-//   http://www.mongodb.org/display/DOCS/Connections
-//
-//   Example: 'mongodb://localhost/bitcoin'
-//
-//cfg.storage.uri = 'mongodb://localhost/bitcoin';
 //cfg.storage.uri = null;
 
 // OTHER SETTINGS

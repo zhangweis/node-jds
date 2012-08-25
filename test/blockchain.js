@@ -14,8 +14,8 @@ var Step = require('step');
 // Detect test-ready Storage engines
 var leveldbAvailable = false;
 try {
-  var level = require('leveldb');
-  if (level.DB) {
+  var leveldb = require('leveldb');
+  if (leveldb.open) {
     leveldbAvailable = true;
   }
 } catch (e) {}

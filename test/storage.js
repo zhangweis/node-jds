@@ -34,6 +34,18 @@ var testBlock4 = new Block({
   active: true
 });
 
+var testBlock5 = new Block({
+  nonce: 5,
+  height: 3,
+  active: true
+});
+
+var testBlock6 = new Block({
+  nonce: 6,
+  height: 4,
+  active: true
+});
+
 var bogusBlock = new Block({
   prev_hash: testBlock4.getHash(),
   nonce: 21,
@@ -48,8 +60,8 @@ var testTx1 = new Transaction({
 // Detect test-ready Storage engines
 var leveldbAvailable = false;
 try {
-  var level = require('leveldb');
-  if (level.DB) {
+  var leveldb = require('leveldb');
+  if (leveldb.open) {
     leveldbAvailable = true;
   }
 } catch (e) {}
@@ -88,6 +100,14 @@ function testEngine(label, uri) {
           function insertBlock4(err) {
             if (err) throw err;
             storage.saveBlock(testBlock4, this);
+          },
+          function insertBlock5(err) {
+            if (err) throw err;
+            storage.saveBlock(testBlock5, this);
+          },
+          function insertBlock6(err) {
+            if (err) throw err;
+            storage.saveBlock(testBlock6, this);
           },
           function insertTx1(err) {
             if (err) throw err;
@@ -253,10 +273,10 @@ function testEngine(label, uri) {
             }
           );
         },
-        'returning an array of hashes': function (topic) {
+        'returning an array of blocks': function (topic) {
           assert.isTrue(Array.isArray(topic));
-          topic.forEach(function (hash) {
-            assert.isTrue(Buffer.isBuffer(hash));
+          topic.forEach(function (block) {
+            assert.instanceOf(block, Block);
           });
         },
         'of the right length': function (topic) {
@@ -264,16 +284,16 @@ function testEngine(label, uri) {
         },
         'matching the right hashes': function (topic) {
           assert.equal(
-            encodeHex(topic[0]),
+            encodeHex(topic[0].getHash()),
             encodeHex(testBlock3.getHash())
           );
           assert.equal(
-            encodeHex(topic[1]),
-            encodeHex(testBlock1.getHash())
+            encodeHex(topic[1].getHash()),
+            encodeHex(testBlock5.getHash())
           );
           assert.equal(
-            encodeHex(topic[2]),
-            encodeHex(testBlock2.getHash())
+            encodeHex(topic[2].getHash()),
+            encodeHex(testBlock6.getHash())
           );
         }
       },
@@ -328,8 +348,8 @@ function testEngine(label, uri) {
             callback(null, block);
           });
         },
-        'returns undefined': function (topic) {
-          assert.isUndefined(topic);
+        'returns null': function (topic) {
+          assert.isNull(topic);
         }
       },
 

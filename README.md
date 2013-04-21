@@ -6,6 +6,8 @@ This is an implementation of a Bitcoin node in Node.js. It is intended
 as a powerful alternative to the standard bitcoind that ships with the
 original client.
 
+[Website](http://bitcoinjs.org/) • [Mailing List](https://groups.google.com/group/bitcoinjs) • [Twitter](https://twitter.com/bitcoinjs)
+
 # Differences to original client
 
 The original client contains the node, wallet, GUI and miner. This

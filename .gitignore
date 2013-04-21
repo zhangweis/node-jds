@@ -6,3 +6,4 @@ daemon/settings.js
 coverage.html
 test-cov
 v8.log
+config.gypi

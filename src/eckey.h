@@ -81,7 +81,7 @@ public:
     VerifySignature(const Arguments& args);
 
   static void
-    VerifySignatureCallback(uv_work_t *req);
+    VerifySignatureCallback(uv_work_t *req, int status);
 
   static Handle<Value>
     VerifySignatureSync(const Arguments& args);

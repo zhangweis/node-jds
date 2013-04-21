@@ -302,3 +302,5 @@ init (Handle<Object> target)
   target->Set(String::New("base58_decode"), FunctionTemplate::New(base58_decode)->GetFunction());
   target->Set(String::New("sha256_midstate"), FunctionTemplate::New(sha256_midstate)->GetFunction());
 }
+
+NODE_MODULE(native, init)

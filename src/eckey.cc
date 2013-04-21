@@ -1,7 +1,10 @@
+#include <string.h>
+
 #include <v8.h>
 
 #include <node.h>
 #include <node_buffer.h>
+#include <node_internals.h>
 
 #include <openssl/ecdsa.h>
 #include <openssl/evp.h>
@@ -245,7 +248,7 @@ BitcoinKey::GetPublic(Local<String> property, const AccessorInfo& info)
   }
 
   // Export public
-  unsigned int pub_size = i2o_ECPublicKey(key->ec, NULL);
+  int pub_size = i2o_ECPublicKey(key->ec, NULL);
   if (!pub_size) {
     // TODO: ERROR: "Error from i2o_ECPublicKey(key->ec, NULL)"
     return scope.Close(Null());
@@ -313,7 +316,7 @@ BitcoinKey::ToDER(const Arguments& args)
   }
 
   // Export DER
-  unsigned int der_size = i2d_ECPrivateKey(key->ec, NULL);
+  int der_size = i2d_ECPrivateKey(key->ec, NULL);
   if (!der_size) {
     // TODO: ERROR: "Error from i2d_ECPrivateKey(key->ec, NULL)"
     return scope.Close(Null());
@@ -416,7 +419,7 @@ BitcoinKey::VerifySignature(const Arguments& args)
 }
 
 void
-BitcoinKey::VerifySignatureCallback(uv_work_t *req)
+BitcoinKey::VerifySignatureCallback(uv_work_t *req, int status)
 {
   HandleScope scope;
   verify_sig_baton_t *baton = static_cast<verify_sig_baton_t *>(req->data);
@@ -535,7 +538,7 @@ BitcoinKey::SignSync(const Arguments& args)
   ECDSA_SIG *sig = key->Sign(hash_data, hash_len);
 
   // Export DER
-  unsigned int der_size = i2d_ECDSA_SIG(sig, NULL);
+  int der_size = i2d_ECDSA_SIG(sig, NULL);
   if (!der_size) {
     // TODO: ERROR: "Error from i2d_ECPrivateKey(key->ec, NULL)"
     return scope.Close(Null());

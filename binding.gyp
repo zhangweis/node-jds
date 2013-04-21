@@ -6,7 +6,8 @@
     {
       'target_name': 'native',
       'sources': [
-        'native.cc'
+        'src/main.cc',
+        'src/eckey.cc'
       ],
       'conditions': [
         ['node_shared_openssl=="false"', {

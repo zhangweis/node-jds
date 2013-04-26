@@ -53,6 +53,13 @@ automatically. No manual steps should be necessary.
 If you wish to use a MongoDB database, you need to setup a MongoDB
 server. This can be done using any method.
 
+You also need to install the MongoDB Node.js module:
+
+``` sh
+cd /path/to/bitcoinjs-server
+npm install mongodb
+```
+
 Note that we don't recommend using MongoDB. We see BitcoinJS as a
 special purpose database server, so having a general purpose database
 server behind introduces tremendous overhead. For more information on

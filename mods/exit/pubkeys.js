@@ -2,6 +2,7 @@ var bitcoin = require('../../lib/bitcoin');
 var logger = require('../../lib/logger');
 
 var util = require('util');
+var events = require('events');
 require('buffertools');
 var uuid = require('node-uuid');
 var Step = require('step');

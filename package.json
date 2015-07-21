@@ -28,9 +28,11 @@
   "dependencies": {
     "bignum": ">=0.4.0",
     "binary": ">=0.2.5 <0.3",
+    "bs58": "^2.0.1",
     "buffers": ">=0.1.1",
     "buffertools": ">=1.x",
     "colors": ">=0.5.0",
+    "crypto-hashing": "^0.3.1",
     "ecdsa": "^0.6.0",
     "forever": ">=0.6.1",
     "irc": ">=0.2.1",

@@ -8,20 +8,16 @@
     "bitcoin",
     "client"
   ],
-
   "bin": {
     "bitcoinjs": "./bin/bitcoinjs"
   },
-
   "scripts": {
     "install": "node-gyp configure build",
     "test": "vows --spec test/*.js"
   },
-
   "engines": {
-    "node" : ">= 0.9.4"
+    "node": ">= 0.9.4"
   },
-
   "man": [
     "./man/bitcoinjs.1",
     "./man/run.1",
@@ -29,41 +25,37 @@
     "./man/db-drop.1",
     "./man/test.1"
   ],
-
   "dependencies": {
-    "buffertools": ">=1.0.3",
-    "binary": ">=0.2.5 <0.3",
     "bignum": ">=0.4.0",
-    "step": ">=0.0.4",
-    "winston": ">=0.2.6",
+    "binary": ">=0.2.5 <0.3",
+    "buffers": ">=0.1.1",
+    "buffertools": ">=1.x",
+    "colors": ">=0.5.0",
+    "ecdsa": "^0.6.0",
+    "forever": ">=0.6.1",
     "irc": ">=0.2.1",
     "jsonrpc2": ">=0.1.0",
-    "yanop": ">=0.1.1",
-    "forever": ">=0.6.1",
-    "progress-bar": ">=0.1.1",
-    "colors": ">=0.5.0",
-    "lru-cache": ">=1.0.4",
-    "pkginfo": ">=0.2.0",
-    "buffers": ">=0.1.1",
     "leveldown": ">=0.2.1",
+    "lru-cache": ">=1.0.4",
     "mkdirp": ">=0.2.1",
-    "npm": "*"
+    "npm": "*",
+    "pkginfo": ">=0.2.0",
+    "progress-bar": ">=0.1.1",
+    "step": ">=0.0.4",
+    "winston": ">=0.2.6",
+    "yanop": ">=0.1.1"
   },
-
   "devDependencies": {
     "vows": ">=0.5.8",
     "ronn": ">=0.3.6"
   },
-
   "author": "Stefan Thomas <justmoon@members.fsf.org> (http://www.justmoon.net)",
-
   "contributors": [
     "Andrew Schaaf <andrew@andrewschaaf.com>",
     "Mike Hearn <hearn@google.com>",
     "Robert Kieffer <robert@broofa.com>",
     "Bill Casarin <bill@casarin.ca> (jb55.com)"
   ],
-
   "repository": {
     "type": "git",
     "url": "git://github.com/bitcoinjs/bitcoinjs-server.git"
